@@ -1,5 +1,5 @@
 const shortId=require("shortid")
-const url=require("../models/model");
+const url=require("../models/functionmodel");
 
 async function generateurl(req,res){
     const body=req.body

@@ -1,0 +1,14 @@
+Authentication:
+two types:
+1)statefull:it store state or data on server
+2)stateless:it does not have state
+
+client-------->server (email,password)
+client<--------server(uid)(session id)
+
+it can pass uid in header,response,cookies(in REST API we pass through header)
+
+client------->server(request server with uid)
+server(checks the uid and its permission and send response)
+
+client--->auth middleware which checks uid(next())----->functional code
