@@ -1,5 +1,7 @@
 const express = require("express")
 const path = require("path")
+const cookieparser=require("cookie-parser")
+const {restrictToLoggedinUserOnly,checkauth}=require("./middleware/auth")
 const connection = require("./connection")
 const url = require("./models/functionmodel")
 
@@ -18,16 +20,17 @@ app.set("views", path.resolve("./views")); //compatibility with other os like in
 
 
 //middleware
+app.use(cookieparser()); 
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(express.json())//parse incoming JSON payloads
 connection(process.env.MONGO_URL).then(() => {
     app.listen(PORT, () => {
         console.log(`server started at port ${PORT}`)
     })
 })
 
-app.use("/url", functionRoute)
-app.use("/", staticRouter)
+app.use("/url",restrictToLoggedinUserOnly, functionRoute)
+app.use("/",checkauth, staticRouter)
 app.use("/handle",userRouter)
 
 app.get("/task", (req, res) => {

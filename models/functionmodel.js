@@ -11,6 +11,10 @@ const newSchema=new mongoose.Schema({
         required:true
      },
      visithistory:[{timestamp:{ type:Number}}],
+     createdBy:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"userdata"
+     }
 })
 
 const newmodel=mongoose.model("data",newSchema)
