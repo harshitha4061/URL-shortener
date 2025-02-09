@@ -12,3 +12,12 @@ client------->server(request server with uid)
 server(checks the uid and its permission and send response)
 
 client--->auth middleware which checks uid(next())----->functional code
+
+in statefull we have to store data on server,server has limited memory
+so we came up with stateless
+
+in stateless we use jwt:header,encoding patterns ,data--->it creates some encrypted text
+when you give it to ,it automatically decodes it to orginal data ,so no need to store the state on server rather it is stored near client
+
+in banks we need it for short time so we use sessions
+for other pplication which has longer time we use tokens

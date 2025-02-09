@@ -24,8 +24,9 @@ async function handlelogin(req, res) {
     });
 
     if (loginuser) {
-        const sessionid = uuidv4();
-        setUser(sessionid, loginuser);
+        // const sessionid = uuidv4();
+        // setUser(sessionid, loginuser);
+        const sessionid=setUser(loginuser)
         
         res.cookie("uid", sessionid, { httpOnly: true, secure: false }); 
         //httpOnly: Prevents client-side JavaScript from accessing the cookie (helps protect against XSS attacks).The cookie can only be accessed by the server.
